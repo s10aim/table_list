@@ -1,0 +1,33 @@
+<div class="container-fluid my-5" style="max-width: 600px;">
+  <h3 >プログラミング言語<br class="d-sm-none">
+    一覧表示</h3>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col" class="w-100">メッセージ</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @languages.each.with_index(1) do |language, i| %>
+        <tr>
+          <td><%= i %></td>
+          <td><%= language.content %></td>
+          <td class="text-nowrap">
+            <%= link_to edit_language_path(language), class: "btn btn-success" do%>
+              <i class="far fa-edit"></i><span class="d-none d-sm-inline"> 編集</span>
+            <% end%>
+          </td>
+          <td class="text-nowrap">
+            <%= link_to language_path(language), method: :delete, data: {confirm: "削除しますか？"}, class: "btn btn-danger" do %>
+              <i class="far fa-trash-alt"></i><span class="d-none d-sm-inline"> 削除</span>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <%= link_to "新規投稿", new_language_path, class: "btn btn-primary btn-block mt-5" %>
+</div>
